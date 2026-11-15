@@ -1,0 +1,59 @@
+class Solution {
+    public boolean isNumber(String s) {
+        int i = 0;
+        int n = s.length();
+
+        while (i < n && s.charAt(i) == ' ') {
+            i++;
+        }
+
+        if (i < n && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
+            i++;
+        }
+
+        int count = 0;
+
+        while (i < n && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+            count++;
+            i++;
+        }
+
+        if (i < n && s.charAt(i) == '.') {
+            i++;
+
+            while (i < n && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+                count++;
+                i++;
+            }
+        }
+
+        if (count == 0) {
+            return false;
+        }
+
+        if (i < n && (s.charAt(i) == 'e' || s.charAt(i) == 'E')) {
+            i++;
+
+            if (i < n && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
+                i++;
+            }
+
+            int num = 0;
+
+            while (i < n && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+                num++;
+                i++;
+            }
+
+            if (num == 0) {
+                return false;
+            }
+        }
+
+        while (i < n && s.charAt(i) == ' ') {
+            i++;
+        }
+
+        return i == n;
+    }
+}
